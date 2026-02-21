@@ -2,8 +2,5 @@
 builder = "NIXPACKS"
 buildDir = "backend"
 
-[deploy]
-startCommand = "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
-
 [build.env]
 PYTHON_VERSION = "3.9"
