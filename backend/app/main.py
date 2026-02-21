@@ -6,6 +6,7 @@ from fastapi.exceptions import HTTPException
 from app.core.config import get_settings
 from app.core.logging import setup_logging, get_logger
 from app.routes import auth, resumes, templates
+from app.db.base import engine, Base
 
 settings = get_settings()
 
@@ -26,6 +27,11 @@ app = FastAPI(
 @app.on_event("startup")
 async def startup_event():
     """应用启动事件"""
+    # 自动创建数据库表
+    logger.info("创建数据库表...")
+    Base.metadata.create_all(bind=engine)
+    logger.info("数据库表创建完成")
+
     logger.info("=" * 50)
     logger.info("Resume Builder API 启动中...")
     logger.info(f"环境: {settings.ENVIRONMENT}")
