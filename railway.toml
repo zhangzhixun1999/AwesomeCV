@@ -1,3 +1,7 @@
 [build]
 builder = "DOCKERFILE"
 dockerfilePath = "backend/Dockerfile"
+
+[healthcheck]
+path = "/health"
+timeout = 300
