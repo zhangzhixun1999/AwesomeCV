@@ -32,6 +32,28 @@ async def startup_event():
     Base.metadata.create_all(bind=engine)
     logger.info("数据库表创建完成")
 
+    # 创建测试账号（如果不存在）
+    from app.db.session import SessionLocal
+    from app.models.user import User
+    import bcrypt
+
+    db = SessionLocal()
+    try:
+        existing_user = db.query(User).filter(User.email == "test@example.com").first()
+        if not existing_user:
+            test_user = User(
+                email="test@example.com",
+                password_hash=bcrypt.hashpw(b"password123", bcrypt.gensalt()).decode(),
+                full_name="测试用户"
+            )
+            db.add(test_user)
+            db.commit()
+            logger.info("测试账号创建成功: test@example.com / password123")
+        else:
+            logger.info("测试账号已存在")
+    finally:
+        db.close()
+
     logger.info("=" * 50)
     logger.info("Resume Builder API 启动中...")
     logger.info(f"环境: {settings.ENVIRONMENT}")

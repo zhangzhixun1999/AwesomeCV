@@ -24,6 +24,12 @@ CREATE TABLE IF NOT EXISTS resumes (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- 测试账号
+-- 邮箱: test@example.com
+-- 密码: password123
+INSERT INTO users (email, password_hash, full_name)
+VALUES ('test@example.com', '$2b$12$WZUhWX4wJ4Co8QFlBFZXXeggpxAG/mW5nx7QvjkhTZm.M0iNs95WO', '测试用户');
+
 -- 索引
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 CREATE INDEX IF NOT EXISTS idx_resumes_user_id ON resumes(user_id);
