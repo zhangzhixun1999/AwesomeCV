@@ -1,3 +1,4 @@
 [build]
-builder = "RAILPACK"
-buildDir = "backend"
+builder = "DOCKERFILE"
+dockerfilePath = "backend/Dockerfile"
+context = "backend"
