@@ -78,7 +78,11 @@ async def global_exception_handler(request: Request, exc: Exception):
 # 配置 CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.FRONTEND_URL, "http://localhost:5175"],
+    allow_origins=[
+        settings.FRONTEND_URL,
+        "http://localhost:5175",
+        "https://awesome-cv-iota.vercel.app",  # Vercel production
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
