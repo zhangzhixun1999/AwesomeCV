@@ -1,5 +1,6 @@
 FROM python:3.9-slim
 
+# Production build for Railway
 WORKDIR /app
 
 # Install dependencies
