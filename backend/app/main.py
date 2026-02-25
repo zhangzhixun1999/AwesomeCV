@@ -110,6 +110,8 @@ app.add_middleware(
         settings.FRONTEND_URL,
         "http://localhost:5175",
         "https://awesome-cv-iota.vercel.app",  # Vercel production
+        "https://awesomecv.top",  # 阿里云自定义域名
+        "https://www.awesomecv.top",  # 阿里云自定义域名 (www)
     ],
     allow_credentials=True,
     allow_methods=["*"],
